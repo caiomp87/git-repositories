@@ -15,7 +15,14 @@ app.get("/repositories", (request, response) => {
 
 app.post("/repositories", (request, response) => {
   const { title, url, techs } = request.body;
-  const repository = { id: uuid(), title, url, techs, likes: 0};
+
+  const repository = {
+    id: uuid(), 
+    title: title, 
+    url: url, 
+    techs: techs, 
+    likes: 0 
+  };
 
   repositories.push(repository);
 
@@ -33,6 +40,7 @@ app.put("/repositories/:id", (request, response) => {
   }
 
   const repository = {
+    id,
     title,
     url,
     techs
@@ -59,7 +67,6 @@ app.delete("/repositories/:id", (request, response) => {
 });
 
 app.post("/repositories/:id/like", (request, response) => {
-  // TODO
   const { id } = request.params;
   const repository = repositories.find(repo => repo.id === id);
 
